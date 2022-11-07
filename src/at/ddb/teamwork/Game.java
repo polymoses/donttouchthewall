@@ -14,9 +14,15 @@ import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
 
-import java.awt.GridLayout;
+import javafx.embed.swing.JFXPanel;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+
 import java.io.File;
 import java.io.IOException;
+
+
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 
@@ -27,6 +33,7 @@ public class Game extends JFrame{
     private HighScore highscore;
     private JTextField usernameField;
     private JButton startButton;
+    private MediaPlayer mediaPlayer;
 
     public Game() {
         super("Dont't touch the wall");
@@ -50,6 +57,7 @@ public class Game extends JFrame{
 
         try {
             this.initHomeScreen();
+            this.playMusic();
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -105,6 +113,15 @@ public class Game extends JFrame{
 
 
             
+    }
+
+    private void playMusic() {
+        final JFXPanel fxPanel = new JFXPanel();
+        Media music = new Media(new File("assets/THE_HARA_Fire.mp3").toURI().toString());
+        mediaPlayer = new MediaPlayer(music);
+        mediaPlayer.setCycleCount(Integer.MAX_VALUE);
+        mediaPlayer.play();
+        mediaPlayer.setVolume(0.3);
     }
 
 
